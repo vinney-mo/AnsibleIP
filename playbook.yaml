@@ -1,0 +1,6 @@
+---
+- name: Ansible Instrumentation
+  hosts: all
+  vars:
+    client_image: viper0418/client:v1.0.0
+    backend_image: viper0418/backend:v1.0.0
