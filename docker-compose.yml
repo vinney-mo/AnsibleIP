@@ -3,7 +3,7 @@ version: '3'
 services:
   frontend:
     container_name: frontend_container
-    image: { { client_image } }
+    image: {{ client_image }}
     ports:
       - 3000:3000
     networks:
@@ -14,7 +14,7 @@ services:
 
   backend:
     container_name: backend_container
-    image: { { backend_image } }
+    image: {{ backend_image }}
     ports:
       - 5000:5000
     environment:
