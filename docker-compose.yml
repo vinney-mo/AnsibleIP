@@ -31,7 +31,7 @@ services:
       - 27017:27017
     networks:
       backend-tier-network:
-        ipv4_address: 172.127.0.3
+        ipv4_address: 172.127.0.1
     environment:
       MONGO_INITDB_ROOT_USERNAME: backend
       MONGO_INITDB_ROOT_PASSWORD: backend
