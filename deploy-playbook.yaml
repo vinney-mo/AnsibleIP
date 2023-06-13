@@ -1,6 +1,6 @@
 ---
 - name: Clone code from GitHub and Deploy
-  hosts: your_server_ip
+  hosts: all
   gather_facts: False
 
   vars:
