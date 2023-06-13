@@ -1,6 +1,5 @@
----
 - name: Install Docker
-  hosts: i-0b2b55bd8e72ad591
+  hosts: all
   tasks:
     - name: Install necessary packages
       ansible.builtin.apt:
