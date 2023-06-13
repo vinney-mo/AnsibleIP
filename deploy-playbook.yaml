@@ -4,7 +4,7 @@
   gather_facts: False
 
   vars:
-    application_path: /opt/yolo
+    application_path: /opt/yolo2
 
   tasks:
     - name: Install Git
