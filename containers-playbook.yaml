@@ -1,5 +1,5 @@
 ---
-- name: Ansible Instrumentation
+- name: Run yolo Containers
   hosts: all
   vars:
     client_image: viper0418/client:v1.0.0
