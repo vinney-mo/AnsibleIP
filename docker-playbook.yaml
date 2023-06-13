@@ -1,5 +1,9 @@
 - name: Install Docker
   hosts: all
+  vars:
+    client_image: viper0418/client:v1.0.0
+    backend_image: viper0418/backend:v1.0.0
+    app_folder: /opt/yolo
   tasks:
     - name: Install necessary packages
       ansible.builtin.apt:
