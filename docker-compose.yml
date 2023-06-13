@@ -16,7 +16,7 @@ services:
       - 3000:3000
     environment:
       PORT: 3000
-      DATABASE_URL: 'mongodb://group3:group3@172.127.0.1:27017'
+      MONGODB_URI: 'mongodb://backend:backend@172.127.0.1:27017'
     depends_on:
       - mongo
     networks:
@@ -33,8 +33,8 @@ services:
       backend-tier-network:
         ipv4_address: 172.127.0.3
     environment:
-      MONGO_INITDB_ROOT_USERNAME: group3
-      MONGO_INITDB_ROOT_PASSWORD: group3
+      MONGO_INITDB_ROOT_USERNAME: backend
+      MONGO_INITDB_ROOT_PASSWORD: backend
 
 
 networks:
