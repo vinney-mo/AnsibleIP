@@ -5,7 +5,7 @@ services:
     container_name: client
     image: {{ client_image }}
     ports:
-      - 3000:3000
+      - 3000:80
     networks:
       frontend-net:
         ipv4_address: 172.51.0.101
