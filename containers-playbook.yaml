@@ -26,3 +26,8 @@
       ansible.builtin.template:
         src: ./docker-compose.yaml
         dest: "{{ app_folder }}/docker-compose.yaml"
+
+    - name: Start containers
+      shell: "docker-compose up -d"
+      args:
+        chdir: "{{ app_folder }}"
