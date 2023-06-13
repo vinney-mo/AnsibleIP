@@ -5,13 +5,10 @@ services:
     container_name: frontend_container
     image: {{ client_image }}
     ports:
-      - 3000:3000
+      - 3000:80
     networks:
       frontend-tier-network:
         ipv4_address: 172.128.0.3
-    depends_on:
-      - backend
-
   backend:
     container_name: backend_container
     image: {{ backend_image }}
@@ -27,7 +24,6 @@ services:
         ipv4_address: 172.127.0.2
       frontend-tier-network:
         ipv4_address: 172.128.0.2
-
   mongo:
     container_name: backend_database
     image: mongo
@@ -39,6 +35,7 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: backend
       MONGO_INITDB_ROOT_PASSWORD: backend
+
 
 networks:
   frontend-tier-network:
