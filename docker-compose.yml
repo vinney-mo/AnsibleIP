@@ -1,9 +1,9 @@
 version: '3'
 
 services:
-  client:
-    container_name: client
-    image: {{ client_image }}
+  frontend:
+    container_name: frontend_container
+    image: { { client_image } }
     ports:
       - 3000:3000
     networks:
@@ -13,26 +13,26 @@ services:
       - backend
 
   backend:
-    container_name: backend
-    image: {{ backend_image }}
+    container_name: backend_container
+    image: { { backend_image } }
     ports:
       - 5000:5000
     environment:
       PORT: 5000
-      MONGODB_URI: 'mongodb://backend:backend@172.100.0.101:27017'
+      MONGODB_URI: 'mongodb://backend:backend@172.127.0.1:27017'
+    depends_on:
+      - mongo
     networks:
       backend-tier-network:
         ipv4_address: 172.127.0.2
       frontend-tier-network:
         ipv4_address: 172.128.0.2
-    depends_on:
-      - database
 
-  database:
+  mongo:
     container_name: backend_database
+    image: mongo
     ports:
       - 27017:27017
-    image: mongo
     networks:
       backend-tier-network:
         ipv4_address: 172.127.0.3
