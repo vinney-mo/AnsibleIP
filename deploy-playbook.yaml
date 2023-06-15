@@ -7,11 +7,29 @@
     application_path: /opt/yolo2
 
   tasks:
+    - name: Install Git
+      become: true
+      apt:
+        name: git
+        state: present
+
     - name: Clone code from GitHub
       git:
         repo: https://github.com/Vinge1718/yolo.git
         dest: "{{ application_path }}"
         version: master
+
+    - name: Install Node.js
+      become: true
+      apt:
+        name: nodejs
+        state: present
+
+    - name: Install npm
+      become: true
+      apt:
+        name: npm
+        state: present
 
     - name: Install frontend dependencies
       become: true
