@@ -32,8 +32,8 @@
   hosts: host_2  # Update with appropriate target hosts as highlighted in terraform
   gather_facts: false
   vars:
-    client_image: viper0418/client:1.0.0
-    backend_image: viper0418/backend:1.0.0
+    client_image: viper0418/client:v1.0.0
+    backend_image: viper0418/backend:v1.0.0
     app_folder: /opt/yolo
 
   roles:
