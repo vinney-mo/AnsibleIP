@@ -1,29 +1,22 @@
 resource "aws_key_pair" "example" {
-  key_name   = "host-4-key"
+  key_name   = "host-3-key"
   public_key = var.public_key  # Update the key in the.tfvars file
 }
 
 resource "aws_security_group" "example" {
-  name        = "My Security Group"
-  description = "Allow SSH, HTTP, and HTTP traffic"
-
-  #Allow SSH
+  name_prefix = "example"
   ingress {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
-
-  #Allow HTTP
   ingress {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
-
-  #Allow HTTP
   ingress {
     from_port   = 443
     to_port     = 443
@@ -38,7 +31,7 @@ resource "aws_instance" "example" {
 
   key_name      = aws_key_pair.example.key_name
 
-  vpc_security_group_ids = aws_security_group.example
+  vpc_security_group_ids = aws_security_group.example # Change this to your desired group ID. Default to allow ssh
 
   tags = {
     Name = "Ansible-Host-3"
@@ -46,7 +39,7 @@ resource "aws_instance" "example" {
 
   provisioner "local-exec" {
     command = <<-EOT
-      echo "host_4 ansible_host=${aws_instance.example.public_dns}" >> /etc/ansible/hosts
+      echo "host_3 ansible_host=${aws_instance.example.public_dns}" >> /etc/ansible/hosts
     EOT
   }
 
