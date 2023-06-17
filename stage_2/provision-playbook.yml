@@ -29,7 +29,7 @@
         minutes: 2
 
 - name: Configure Docker and run containers
-  hosts: host_3  # Update with appropriate target hosts as highlighted in terraform
+  hosts: host_2  # Update with appropriate target hosts as highlighted in terraform
   gather_facts: false
   vars:
     client_image: viper0418/client:1.0.0

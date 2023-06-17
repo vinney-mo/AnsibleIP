@@ -12,12 +12,12 @@ resource "aws_instance" "example" {
   vpc_security_group_ids = ["sg-09e9f35f02c3890e1"] # Change this to your desired group ID. Default to allow ssh
 
   tags = {
-    Name = "Ansible-Host-1"
+    Name = "Ansible-Host-2"
   }
 
   provisioner "local-exec" {
     command = <<-EOT
-      echo "host_3 ansible_host=${aws_instance.example.public_dns}" >> /etc/ansible/hosts
+      echo "host_2 ansible_host=${aws_instance.example.public_dns}" >> /etc/ansible/hosts
     EOT
   }
 
