@@ -12,7 +12,7 @@ resource "aws_instance" "example" {
   vpc_security_group_ids = ["sg-09e9f35f02c3890e1"] # Change this to your desired group ID. Default to allow ssh
 
   tags = {
-    Name = "Ansible-Host-2"
+    Name = "Ansible-Host-3"
   }
 
   provisioner "local-exec" {
