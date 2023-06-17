@@ -1,5 +1,5 @@
 resource "aws_key_pair" "example" {
-  key_name   = "host-key"
+  key_name   = "host-2-key"
   public_key = var.public_key  # Update the key in the.tfvars file
 }
 
