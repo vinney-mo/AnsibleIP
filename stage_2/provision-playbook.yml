@@ -6,12 +6,12 @@
     - name: Terraform Init
       terraform:
         command: init
-        working_dir: "{{ playbook_dir }}/terraform"
+        project_path: "{{ playbook_dir }}/terraform"
 
     - name: Terraform plan
       terraform:
         command: plan
-        working_dir: "{{ playbook_dir }}/terraform"
+        project_path: "{{ playbook_dir }}/terraform"
 
     - name: Terraform apply
       terraform:
