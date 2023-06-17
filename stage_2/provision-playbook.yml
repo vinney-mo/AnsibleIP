@@ -3,21 +3,29 @@
   hosts: localhost  # Ansible runs locally
 
   tasks:
-    - name: Terraform Init
-      terraform:
-        command: init
-        project_path: "{{ playbook_dir }}/terraform"
-
-    - name: Terraform plan
-      terraform:
-        command: plan
-        project_path: "{{ playbook_dir }}/terraform"
-
-    - name: Terraform apply
-      terraform:
-        command: apply
-        project_path: "{{ playbook_dir }}/terraform"
+    - name: Initialize Terraform
+      ansible.builtin.terraform:
         state: present
+        command: init
+        working_dir: "{{ playbook_dir }}/terraform"
+
+    - name: Generate Terraform plan
+      ansible.builtin.terraform:
+        state: present
+        command: plan
+        working_dir: "{{ playbook_dir }}/terraform"
+      register: plan_output
+
+    - name: Display Terraform plan
+      debug:
+        var: plan_output.stdout_lines
+
+    - name: Apply Terraform changes
+      ansible.builtin.terraform:
+        state: present
+        command: apply
+        working_dir: "{{ playbook_dir }}/terraform"
+        auto_approve: true
 
 - name: Wait for two minutes
   hosts: localhost  # Ansible runs locally
