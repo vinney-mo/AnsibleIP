@@ -17,7 +17,7 @@ resource "aws_instance" "example" {
 
   provisioner "local-exec" {
     command = <<-EOT
-      echo "${aws_instance.example.public_dns}" >> hosts
+      echo "host_2 ansible_host=${aws_instance.example.public_dns}" >> /etc/ansible/hosts
     EOT
   }
 

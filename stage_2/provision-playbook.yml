@@ -1,0 +1,17 @@
+---
+- name: Provision and configure resources
+  hosts: localhost  # Ansible runs locally
+
+  tasks:
+    - name: Provision resources using Terraform
+      terraform:
+        project_path: terraform
+        state: present
+
+- name: Configure Docker and run containers
+  hosts: docker_hosts  # Update with appropriate target hosts
+  gather_facts: false
+
+  roles:
+    - docker-installation
+    - docker-containers
