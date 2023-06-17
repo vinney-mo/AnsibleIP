@@ -9,11 +9,6 @@
         state: present
         force_init: true
 
-- name: Wait for Five minutes
-  hosts: localhost  # Ansible runs locally
-  gather_facts: false
-
-  tasks:
     - name: Wait for the server to complete initializing
       pause:
         minutes: 5
