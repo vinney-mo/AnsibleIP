@@ -1,5 +1,5 @@
 resource "aws_key_pair" "example" {
-  key_name   = "host-2-key"
+  key_name   = "host-3-key"
   public_key = var.public_key  # Update the key in the.tfvars file
 }
 
@@ -17,7 +17,7 @@ resource "aws_instance" "example" {
 
   provisioner "local-exec" {
     command = <<-EOT
-      echo "host_2 ansible_host=${aws_instance.example.public_dns}" >> /etc/ansible/hosts
+      echo "host_3 ansible_host=${aws_instance.example.public_dns}" >> /etc/ansible/hosts
     EOT
   }
 
