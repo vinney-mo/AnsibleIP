@@ -1,9 +1,9 @@
-resource "aws_key_pair" "my-key" {
+resource "aws_key_pair" "example" {
   key_name   = "host-4-key"
   public_key = var.public_key  # Update the key in the.tfvars file
 }
 
-resource "aws_security_group" "security_group" {
+resource "aws_security_group" "example" {
   name        = "My Security Group"
   description = "Allow SSH, HTTP, and HTTP traffic"
 
@@ -36,9 +36,9 @@ resource "aws_instance" "example" {
   ami           = "ami-016b30666f212275a"  # Change this to your desired AMI ID
   instance_type = "t3.micro"  # Change this to your desired instance type
 
-  key_name      = aws_key_pair.my-key.key_name
+  key_name      = aws_key_pair.example.key_name
 
-  vpc_security_group_ids = aws_security_group.security_group
+  vpc_security_group_ids = aws_security_group.example
 
   tags = {
     Name = "Ansible-Host-3"
