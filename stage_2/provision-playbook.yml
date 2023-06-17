@@ -3,9 +3,20 @@
   hosts: localhost  # Ansible runs locally
 
   tasks:
-    - name: Provision resources using Terraform
+    - name: Terraform Init
       terraform:
-        project_path: terraform
+        command: init
+        working_dir: "{{ playbook_dir }}/terraform"
+
+    - name: Terraform plan
+      terraform:
+        command: plan
+        working_dir: "{{ playbook_dir }}/terraform"
+
+    - name: Terraform apply
+      terraform:
+        command: apply
+        project_path: "{{ playbook_dir }}/terraform"
         state: present
 
 - name: Wait for two minutes
@@ -13,16 +24,16 @@
   gather_facts: false
 
   tasks:
-    - name: Wait for two minutes
+    - name: Wait for the server to complete initializing
       pause:
         minutes: 2
 
 - name: Configure Docker and run containers
-  hosts: docker_hosts  # Update with appropriate target hosts
+  hosts: host_3  # Update with appropriate target hosts as highlighted in terraform
   gather_facts: false
   vars:
-    client_image: viper0418/client:v1.0.0
-    backend_image: viper0418/backend:v1.0.0
+    client_image: viper0418/client:1.0.0
+    backend_image: viper0418/backend:1.0.0
     app_folder: /opt/yolo
 
   roles:

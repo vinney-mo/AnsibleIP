@@ -17,7 +17,7 @@ resource "aws_instance" "example" {
 
   provisioner "local-exec" {
     command = <<-EOT
-      echo "host_2 ansible_host=${aws_instance.example.public_dns}" >> /etc/ansible/hosts
+      echo "host_3 ansible_host=${aws_instance.example.public_dns}" >> /etc/ansible/hosts
     EOT
   }
 
@@ -26,6 +26,4 @@ resource "aws_instance" "example" {
       key_name,
     ]
   }
-
-  sensitive = true
 }
