@@ -1,6 +1,6 @@
 ---
 - name: Configure Docker and run containers
-  hosts: all  # Update with appropriate target hosts as highlighted in terraform
+  hosts: all  # Update with appropriate target hosts
   gather_facts: false
   vars:
     client_image: viper0418/client:v1.0.0

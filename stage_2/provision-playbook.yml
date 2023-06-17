@@ -20,7 +20,7 @@
       meta: refresh_inventory
 
 - name: Configure Docker and run containers
-  hosts: host_3  # Update with appropriate target hosts as highlighted in terraform
+  hosts: host_4  # Update with appropriate target hosts as highlighted in terraform
   gather_facts: false
   vars:
     client_image: viper0418/client:v1.0.0
