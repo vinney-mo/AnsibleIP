@@ -5,9 +5,8 @@
   tasks:
     - name: Initialize Terraform
       ansible.builtin.terraform:
-        state: present
-        command: init
-        project_path: "{{ playbook_dir }}/terraform"
+        force_init: true
+        init_from_module: true
 
     - name: Generate Terraform plan
       ansible.builtin.terraform:
