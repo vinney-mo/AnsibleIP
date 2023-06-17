@@ -7,13 +7,13 @@
       ansible.builtin.terraform:
         state: present
         command: init
-        working_dir: "{{ playbook_dir }}/terraform"
+        project_path: "{{ playbook_dir }}/terraform"
 
     - name: Generate Terraform plan
       ansible.builtin.terraform:
         state: present
         command: plan
-        working_dir: "{{ playbook_dir }}/terraform"
+        project_path: "{{ playbook_dir }}/terraform"
       register: plan_output
 
     - name: Display Terraform plan
@@ -24,7 +24,7 @@
       ansible.builtin.terraform:
         state: present
         command: apply
-        working_dir: "{{ playbook_dir }}/terraform"
+        project_path: "{{ playbook_dir }}/terraform"
         auto_approve: true
 
 - name: Wait for two minutes
