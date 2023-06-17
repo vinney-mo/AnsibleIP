@@ -1,0 +1,12 @@
+---
+- name: Configure Docker and run containers
+  hosts: all  # Update with appropriate target hosts as highlighted in terraform
+  gather_facts: false
+  vars:
+    client_image: viper0418/client:1.0.0
+    backend_image: viper0418/backend:1.0.0
+    app_folder: /opt/yolo
+
+  roles:
+    - docker-installation
+    - docker-containers
