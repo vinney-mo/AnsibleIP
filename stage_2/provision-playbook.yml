@@ -4,9 +4,8 @@
 
   tasks:
     - name: Initialize Terraform
-      ansible.builtin.terraform:
-        force_init: true
-        init_from_module: true
+      terraform:
+        command: terraform init
         project_path: "{{ playbook_dir }}/terraform"
 
     - name: Generate Terraform plan
