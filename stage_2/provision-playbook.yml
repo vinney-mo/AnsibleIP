@@ -1,21 +1,5 @@
 ---
-- name: Provision and configure resources
-  hosts: localhost  # Ansible runs locally
-
-  tasks:
-    - name: Initialize Terraform
-      community.general.terraform:
-        project_path: "{{ playbook_dir }}/terraform"
-        state: present
-        force_init: true
-
-    - name: Wait for the server to complete initializing
-      pause:
-        minutes: 5
-
 - name: Configure Docker and run containers
-  hosts: all  # Update with appropriate target hosts as highlighted in terraform
-  gather_facts: false
   vars:
     client_image: viper0418/client:v1.0.0
     backend_image: viper0418/backend:v1.0.0
