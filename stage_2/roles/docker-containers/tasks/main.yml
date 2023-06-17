@@ -1,30 +1,25 @@
 ---
 - name: Pull the client image
-  hosts: all  # Update with appropriate target hosts as highlighted in terraform
-  gather_facts: false
+  community.docker.docker_image:
+    name: "{{ client_image }}"
+    source: pull
 
-  tasks:
-    - name: Pull the client image
-      community.docker.docker_image:
-        name: "{{ client_image }}"
-        source: pull
+- name: Pull the backend image
+  community.docker.docker_image:
+    name: "{{ backend_image }}"
+    source: pull
 
-    - name: Pull the backend image
-      community.docker.docker_image:
-        name: "{{ backend_image }}"
-        source: pull
+- name: Create a folder
+  ansible.builtin.file:
+    path: "{{ app_folder }}"
+    state: directory
 
-    - name: Create a folder
-      ansible.builtin.file:
-        path: "{{ app_folder }}"
-        state: directory
+- name: Copy docker-compose file from repo to folder
+  ansible.builtin.template:
+    src: "{{ playbook_dir }}/../docker-compose.yml"
+    dest: "{{ app_folder }}/docker-compose.yml"
 
-    - name: Copy docker-compose file from repo to folder
-      ansible.builtin.template:
-        src: "{{ playbook_dir }}/../docker-compose.yml"
-        dest: "{{ app_folder }}/docker-compose.yml"
-
-    - name: Start containers
-      shell: "docker-compose up -d"
-      args:
-        chdir: "{{ app_folder }}"
+- name: Start containers
+  shell: "docker-compose up -d"
+  args:
+    chdir: "{{ app_folder }}"
