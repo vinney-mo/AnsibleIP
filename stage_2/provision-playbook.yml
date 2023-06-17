@@ -8,9 +8,22 @@
         project_path: terraform
         state: present
 
+- name: Wait for two minutes
+  hosts: localhost  # Ansible runs locally
+  gather_facts: false
+
+  tasks:
+    - name: Wait for two minutes
+      pause:
+        minutes: 2
+
 - name: Configure Docker and run containers
   hosts: docker_hosts  # Update with appropriate target hosts
   gather_facts: false
+  vars:
+    client_image: viper0418/client:v1.0.0
+    backend_image: viper0418/backend:v1.0.0
+    app_folder: /opt/yolo
 
   roles:
     - docker-installation
