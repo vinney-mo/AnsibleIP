@@ -25,7 +25,7 @@ resource "aws_instance" "example" {
 
   key_name      = aws_key_pair.example.key_name
 
-  vpc_security_group_ids = aws_security_group.example # Change this to your desired group ID. Default to allow ssh
+  vpc_security_group_ids = ["sg-09eaf661a7652ac3a"] # Change this to your desired group ID. Default to allow ssh
 
   tags = {
     Name = "Ansible-Host-3"
