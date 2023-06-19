@@ -37,7 +37,7 @@ resource "aws_instance" "the_instance" {
 
   key_name      = aws_key_pair.key_pair.key_name
 
-  security_group_names = [aws_security_group.web_sg.name]
+  vpc_security_group_ids = [aws_security_group.web_sg.name]
 
   tags = {
     Name = "Ansible-Host-3"
