@@ -1,5 +1,5 @@
 ---
-- name: Install necessary packages
+- name: Install the necessary packages
   ansible.builtin.apt:
     name:
       - ca-certificates

@@ -9,18 +9,18 @@
         state: present
         force_init: true
 
-    - name: Wait for the server to complete initializing
+    - name: Wait for the server to complete initializing before proceeding
       pause:
         minutes: 5
 
-- name: Reload host file
+- name: Reload host file # Ansible reload the host file to get the newly created host
   hosts: localhost
   tasks:
     - name: Reload host file
       meta: refresh_inventory
 
 - name: Configure Docker and run containers
-  hosts: host_4  # Update with appropriate target hosts as highlighted in terraform
+  hosts: host_1  # Update with appropriate target hosts as highlighted in terraform
   gather_facts: false
   vars:
     client_image: viper0418/client:v1.0.0
