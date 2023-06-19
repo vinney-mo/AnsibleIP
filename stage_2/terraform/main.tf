@@ -1,31 +1,43 @@
-resource "aws_key_pair" "example" {
-  key_name   = "host-3-key"
+resource "aws_key_pair" "key_pair" {
+  key_name   = "host-4-key"
   public_key = var.public_key  # Update the key in the.tfvars file
 }
 
-resource "aws_security_group" "example" {
-  name_prefix = "example"
+# Create a security group
+resource "aws_security_group" "web_sg" {
+  name        = "web_sg"
+  description = "Security group for web access"
+
   ingress {
-    from_port   = 22
+    from_port   = 22  # SSH
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["0.0.0.0/0"]  # Allow SSH access from anywhere
   }
+
   ingress {
-    from_port   = 80
+    from_port   = 80  # HTTP
     to_port     = 80
     protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]  # Allow HTTP access from anywhere
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
 
-resource "aws_instance" "example" {
+# Launch an EC2 instance
+resource "aws_instance" "the_instance" {
   ami           = "ami-016b30666f212275a"  # Change this to your desired AMI ID
   instance_type = "t3.micro"  # Change this to your desired instance type
 
-  key_name      = aws_key_pair.example.key_name
+  key_name      = aws_key_pair.key_pair.key_name
 
-  vpc_security_group_ids = ["sg-09eaf661a7652ac3a"] # Change this to your desired group ID. Default to allow ssh
+  security_group_names = [aws_security_group.web_sg.name]
 
   tags = {
     Name = "Ansible-Host-3"
@@ -33,7 +45,7 @@ resource "aws_instance" "example" {
 
   provisioner "local-exec" {
     command = <<-EOT
-      echo "host_3 ansible_host=${aws_instance.example.public_dns}" >> /etc/ansible/hosts
+      echo "host_3 ansible_host=${aws_instance.the_instance.public_dns}" >> /etc/ansible/hosts
     EOT
   }
 
