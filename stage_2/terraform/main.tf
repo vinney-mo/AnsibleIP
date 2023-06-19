@@ -16,10 +16,24 @@ resource "aws_security_group" "web_sg" {
   }
 
   ingress {
-    from_port   = 80  # HTTP
-    to_port     = 80
+    from_port   = 3000  # HTTP
+    to_port     = 3000
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]  # Allow HTTP access from anywhere
+    cidr_blocks = ["0.0.0.0/0"]  # Allow Frontend App access from anywhere
+  }
+
+  ingress {
+    from_port   = 5000  # HTTP
+    to_port     = 5000
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]  # Allow Backend App access from anywhere
+  }
+
+  ingress {
+    from_port   = 27017  # HTTP
+    to_port     = 27017
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]  # Allow Database access from anywhere
   }
 
   egress {
