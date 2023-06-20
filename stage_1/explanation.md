@@ -19,4 +19,4 @@ Here are some definations of the playbook.
 - `roles`: This section specifies the roles that will be executed as part of the playbook. Roles are reusable collections of tasks, handlers, and variables that can be applied to different hosts. In this playbook, two roles are specified:
 
     - `docker-installation`: This role is responsible for installing Docker on the target hosts.
-    - `docker-containers`: This role is responsible for running the Docker containers using the specified images and configuring them as required.
+    - `docker-containers`: This role is responsible for running the Docker containers using the specified images and configuring them as required. This role also makes use of `docker-compose.yml` file to load and run the images
